@@ -249,9 +249,9 @@ const Index = () => {
       <div className="fixed bottom-0 right-10 w-[500px] h-[300px] bg-gradient-to-t from-slate-400/[0.03] to-transparent rounded-full blur-3xl pointer-events-none z-0" />
 
       {/* Header Navigation: Floating Frosted Glass Segmented Dock */}
-      <header className="fixed top-0 left-0 right-0 h-16 z-50 flex items-center justify-center pointer-events-none px-4">
-        <nav className="pointer-events-auto bg-[#07090e]/85 backdrop-blur-2xl border border-white/10 p-1 sm:p-1.5 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.12)]">
-          <ul className="flex items-center gap-1 sm:gap-2">
+      <header className="fixed top-0 left-0 right-0 h-14 sm:h-16 z-50 flex items-center justify-center pointer-events-none px-2 sm:px-4">
+        <nav className="pointer-events-auto bg-[#07090e]/90 backdrop-blur-2xl border border-white/10 p-1 sm:p-1.5 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.12)] max-w-full overflow-x-auto scrollbar-hide">
+          <ul className="flex items-center gap-0.5 sm:gap-2">
             {[
               { id: 'about' as const, label: 'About' },
               { id: 'education' as const, label: 'Education' },
@@ -264,7 +264,7 @@ const Index = () => {
                 <li key={id}>
                   <button
                     onClick={() => scrollToSection(id)}
-                    className={`relative px-3.5 sm:px-5 py-1.5 rounded-lg text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 focus:outline-none cursor-pointer flex items-center justify-center ${
+                    className={`relative px-2.5 sm:px-5 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-sm font-medium tracking-wide transition-all duration-200 focus:outline-none cursor-pointer flex items-center justify-center ${
                       isActive
                         ? 'bg-white text-black font-bold shadow-[0_0_20px_rgba(255,255,255,0.45)]'
                         : 'text-slate-300 hover:text-white hover:bg-white/[0.08]'

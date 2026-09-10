@@ -128,9 +128,9 @@ const EducationSection: React.FC = () => {
         </div>
 
         {/* ===================================================================== */}
-        {/* SPLIT & CONVERGE DEGREE CARDS (In Full Rich Original Colors)          */}
+        {/* DESKTOP: SPLIT & CONVERGE DEGREE CARDS (md+ screens)                 */}
         {/* ===================================================================== */}
-        <div className="relative w-full max-w-5xl min-h-[420px] sm:min-h-[440px] flex items-center justify-center mt-2">
+        <div className="hidden md:flex relative w-full max-w-5xl min-h-[420px] sm:min-h-[440px] items-center justify-center mt-2">
           <div className="relative w-full h-[420px] sm:h-[440px] flex items-center justify-center">
             {EDU_CARDS.map((card, index) => {
               const offsets = [-348, 0, 348];
@@ -193,6 +193,58 @@ const EducationSection: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* ===================================================================== */}
+        {/* MOBILE: SWIPEABLE SNAP CAROUSEL (< md screens)                        */}
+        {/* ===================================================================== */}
+        <div className="flex md:hidden flex-col items-center w-full mt-1">
+          <div className="w-full flex gap-3 overflow-x-auto snap-x snap-mandatory px-3 py-2 scrollbar-hide">
+            {EDU_CARDS.map((card) => (
+              <div
+                key={`mob-${card.id}`}
+                className="w-[280px] shrink-0 snap-center rounded-2xl border border-white/15 bg-gradient-to-b from-[#11141d]/95 via-[#0b0d13]/95 to-[#06070a]/95 text-left shadow-[0_10px_30px_rgba(0,0,0,0.85)] backdrop-blur-2xl overflow-hidden flex flex-col justify-between"
+              >
+                {/* Card Media Header */}
+                <div className="relative h-36 w-full overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.degree}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d13] via-[#0b0d13]/40 to-transparent" />
+
+                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-xs">
+                    <span className="flex items-center gap-1 text-[10px] font-medium text-slate-300 bg-black/70 px-2 py-0.5 rounded-md border border-white/10">
+                      <Calendar size={10} className="text-slate-300" />
+                      {card.year}
+                    </span>
+                    <span className="text-[10px] font-bold text-white bg-white/20 px-2 py-0.5 rounded-md border border-white/25">
+                      {card.grade}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Content Details */}
+                <div className="p-3.5 flex-1 flex flex-col justify-start">
+                  <h3 className="text-sm font-black text-white tracking-tight leading-snug mb-1">
+                    {card.degree}
+                  </h3>
+                  <p className="text-[11px] font-medium text-slate-400 mb-1.5 line-clamp-2">
+                    {card.institution}
+                  </p>
+                  <p className="text-[11px] leading-relaxed text-slate-300 font-light line-clamp-3">
+                    {card.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Swipe indicator */}
+          <div className="flex items-center gap-1.5 mt-2 text-[10px] font-mono text-slate-400">
+            <span>◀ SWIPE TO VIEW DEGREES ▶</span>
           </div>
         </div>
       </div>

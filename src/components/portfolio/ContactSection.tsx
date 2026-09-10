@@ -19,7 +19,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onGoBack }) => {
   const [animatedBeamX, setAnimatedBeamX] = useState<number>(0.5);
 
   // =========================================================================
-  // 1. MOUSE TRACKING
+  // 1. MOUSE & TOUCH TRACKING
   // =========================================================================
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -31,8 +31,24 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onGoBack }) => {
       beamAngleRef.current.target = relX;
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      const container = containerRef.current;
+      if (!container || !e.touches[0]) return;
+
+      const rect = container.getBoundingClientRect();
+      const relX = Math.max(0, Math.min(1, (e.touches[0].clientX - rect.left) / (rect.width || window.innerWidth || 1)));
+      beamAngleRef.current.target = relX;
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchstart', handleTouchMove, { passive: true });
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchstart', handleTouchMove);
+    };
   }, []);
 
   // Smooth Pendulum Physics for Half-Body Upside-Down Stickman & Light Cone

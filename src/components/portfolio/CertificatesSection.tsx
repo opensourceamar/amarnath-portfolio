@@ -133,7 +133,28 @@ const CertificatesSection: React.FC = () => {
     return () => cancelAnimationFrame(animId);
   }, [isOrbitPaused]);
 
-  // Mouse Velocity & Drag Steering
+  // Orbital Radii adapting dynamically to screen width
+  const [orbitDim, setOrbitDim] = useState<{ rx: number; ry: number; isMobile: boolean }>({
+    rx: 210,
+    ry: 95,
+    isMobile: false,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 768;
+      setOrbitDim({
+        rx: isMobile ? 120 : 210,
+        ry: isMobile ? 55 : 95,
+        isMobile,
+      });
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Mouse & Touch Velocity & Drag Steering
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const sectionEl = sectionRef.current;
@@ -154,30 +175,49 @@ const CertificatesSection: React.FC = () => {
       }
     };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDraggingRef.current && e.touches[0]) {
+        const deltaX = e.touches[0].clientX - lastMouseXRef.current;
+        rotationAngleRef.current += deltaX * 0.007;
+        lastMouseXRef.current = e.touches[0].clientX;
+      }
+    };
+
     const handleMouseDown = (e: MouseEvent) => {
       if ((e.target as HTMLElement).closest('button, a')) return;
       isDraggingRef.current = true;
       lastMouseXRef.current = e.clientX;
     };
 
-    const handleMouseUp = () => {
+    const handleTouchStart = (e: TouchEvent) => {
+      if ((e.target as HTMLElement).closest('button, a')) return;
+      isDraggingRef.current = true;
+      if (e.touches[0]) lastMouseXRef.current = e.touches[0].clientX;
+    };
+
+    const handleDragEnd = () => {
       isDraggingRef.current = false;
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('mouseup', handleDragEnd);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleDragEnd);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('mouseup', handleDragEnd);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleDragEnd);
     };
   }, [isOrbitPaused]);
 
-  // Orbital Radii for tight 3D perspective gallery
-  const radiusX = 210;
-  const radiusY = 95;
+  const radiusX = orbitDim.rx;
+  const radiusY = orbitDim.ry;
   const totalCerts = CERTIFICATES_DATA.length;
 
   return (
@@ -270,8 +310,8 @@ const CertificatesSection: React.FC = () => {
                   }}
                   className="absolute cursor-pointer select-none transition-transform duration-250 ease-out"
                   style={{
-                    width: `${card.width}px`,
-                    height: `${card.height}px`,
+                    width: `${orbitDim.isMobile ? card.width * 0.72 : card.width}px`,
+                    height: `${orbitDim.isMobile ? card.height * 0.72 : card.height}px`,
                     left: `calc(50% + ${posX}px)`,
                     top: `calc(50% + ${posY}px)`,
                     transform: `translate(-50%, -50%) rotate(${finalTilt}deg) scale(${scale})`,

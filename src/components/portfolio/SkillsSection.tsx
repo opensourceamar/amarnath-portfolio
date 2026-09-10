@@ -491,9 +491,28 @@ const SkillsSection: React.FC = () => {
       }
     };
 
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!e.touches[0]) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.touches[0].clientX - rect.left;
+      const y = e.touches[0].clientY - rect.top;
+
+      const found = findHitCapsule(x, y);
+      if (found) {
+        setSelectedSkill(found.item);
+        setHoveredSkill(found.item);
+        Body.applyForce(found.body, found.body.position, {
+          x: (Math.random() - 0.5) * 0.05,
+          y: -0.09,
+        });
+        spawnDiamondSparks(found.body.position.x, found.body.position.y, 3, true);
+      }
+    };
+
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('click', handleClick);
     canvas.addEventListener('dblclick', handleDoubleClick);
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
 
     const runner = Runner.create();
     runnerRef.current = runner;

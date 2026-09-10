@@ -421,10 +421,14 @@ const ProjectsSection: React.FC = () => {
       const cosRot = Math.cos(GALAXY_TILT_ANGLE);
       const sinRot = Math.sin(GALAXY_TILT_ANGLE);
 
+      const isMobile = width < 768;
+      const radiusScale = isMobile ? Math.min(width / 720, 0.68) : 1;
+
       const newPos = PLANETS.map((planet, i) => {
         const ang = anglesRef.current[i];
-        const localX = Math.cos(ang) * planet.orbitRadiusX;
-        const localY = Math.sin(ang) * planet.orbitRadiusX * DISK_INCLINATION_Y;
+        const radX = planet.orbitRadiusX * radiusScale;
+        const localX = Math.cos(ang) * radX;
+        const localY = Math.sin(ang) * radX * DISK_INCLINATION_Y;
 
         const px = centerX + (localX * cosRot - localY * sinRot);
         const py = centerY + (localX * sinRot + localY * cosRot);

@@ -38,7 +38,7 @@ const SideStrips: React.FC = () => {
       {/* Left Slim Vertical Strip (Moving top to down) */}
       <aside
         aria-hidden="true"
-        className="absolute left-0 top-0 bottom-0 w-7 sm:w-8 z-20 pointer-events-none flex flex-col items-center justify-between bg-[#060709]/85 backdrop-blur-md border-r border-white/10"
+        className="absolute left-0 top-0 bottom-0 w-7 sm:w-8 z-20 pointer-events-none hidden md:flex flex-col items-center justify-between bg-[#060709]/85 backdrop-blur-md border-r border-white/10"
       >
         {/* Top Accent Pip */}
         <div className="w-full flex items-center justify-center py-2.5 border-b border-white/5 opacity-60">
@@ -62,7 +62,7 @@ const SideStrips: React.FC = () => {
       {/* Right Slim Vertical Strip (Moving top to down) */}
       <aside
         aria-hidden="true"
-        className="absolute right-0 top-0 bottom-0 w-7 sm:w-8 z-20 pointer-events-none flex flex-col items-center justify-between bg-[#060709]/85 backdrop-blur-md border-l border-white/10"
+        className="absolute right-0 top-0 bottom-0 w-7 sm:w-8 z-20 pointer-events-none hidden md:flex flex-col items-center justify-between bg-[#060709]/85 backdrop-blur-md border-l border-white/10"
       >
         {/* Top Accent Pip */}
         <div className="w-full flex items-center justify-center py-2.5 border-b border-white/5 opacity-60">
