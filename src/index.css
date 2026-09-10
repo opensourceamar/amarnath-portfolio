@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  White, Silver, and Obsidian Black Theme
+  - Backgrounds: Obsidian / Deep Charcoal (#060709, #0a0c10, #0e1117)
+  - Metallic Accents: Silver / Platinum / Chrome (#ffffff, #f8fafc, #e2e8f0, #cbd5e1, #94a3b8)
+  - Typography: Pure White & Silver Muted (#ffffff, #f1f5f9, #cbd5e1, #94a3b8)
+  - Glows: Silver radiance & Diamond White shimmer
+*/
+
+@layer base {
+  :root {
+    --background: 220 33% 3%;
+    --foreground: 0 0% 100%;
+
+    --card: 224 28% 5%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 224 28% 5%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 224 28% 5%;
+
+    --secondary: 220 20% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 210 40% 98%;
+    --accent-foreground: 224 28% 5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 19% 22%;
+    --input: 217 19% 22%;
+    --ring: 210 40% 98%;
+
+    --radius: 0.85rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[#060709] text-[#f8fafc];
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+}
+
+/* Hide scrollbars completely */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -webkit-scrollbar: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-scrollbar: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #060709;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -webkit-scrollbar: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #060709;
+  color: #f8fafc;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolio-container {
+  scroll-behavior: smooth;
+  -webkit-scrollbar: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.portfolio-container::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-vertical-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-marquee-down {
+  animation: marquee-vertical-down 20s linear infinite;
+  will-change: transform;
+}
+
+.mask-gradient-vertical {
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.animate-fade-in {
+  animation: fade-in 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metallic-text {
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.silver-border {
+  border: 1px solid rgba(226, 232, 240, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.silver-border:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.12);
+}
+
+.glass-obsidian {
+  background: rgba(14, 17, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.glass-obsidian:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+.silver-glow {
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.18);
+}
+
+/* Smooth transitions */
+button,
+a,
+.hover\:transform:hover {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -webkit-scrollbar: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
