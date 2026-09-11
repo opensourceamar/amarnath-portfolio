@@ -268,28 +268,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({ onGoBack }) => {
               </div>
             </div>
 
-            {/* Phone Line */}
-            <div className="flex items-center justify-between py-0.5 border-b border-black/15 hover:border-black/40 transition-colors">
-              <span className="text-black/60 text-[10px] sm:text-[11px] uppercase tracking-wider font-bold">
-                PHONE
-              </span>
-              <div className="flex items-center gap-2">
-                <a
-                  href="tel:+916303898956"
-                  className="font-bold hover:underline tracking-tight text-black text-[11px] sm:text-xs"
-                >
-                  +91 63038 98956
-                </a>
-                <button
-                  onClick={() => handleCopy('+916303898956', 'phone')}
-                  className="text-[10px] text-black/50 hover:text-black underline uppercase cursor-pointer"
-                  title="Copy Phone"
-                >
-                  {copiedField === 'phone' ? <Check size={11} className="inline text-green-700" /> : '[copy]'}
-                </button>
-              </div>
-            </div>
-
             {/* Location Line */}
             <div className="flex items-center justify-between py-0.5 border-b border-black/15">
               <span className="text-black/60 text-[10px] sm:text-[11px] uppercase tracking-wider font-bold">
