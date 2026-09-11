@@ -303,12 +303,7 @@ const CertificatesSection: React.FC = () => {
                     setHoveredCertId(null);
                     setIsOrbitPaused(false);
                   }}
-                  onClick={() => {
-                    if (card.pdfUrl) {
-                      window.open(card.pdfUrl, '_blank');
-                    }
-                  }}
-                  className="absolute cursor-pointer select-none transition-transform duration-250 ease-out"
+                  className="absolute select-none transition-transform duration-250 ease-out"
                   style={{
                     width: `${orbitDim.isMobile ? card.width * 0.72 : card.width}px`,
                     height: `${orbitDim.isMobile ? card.height * 0.72 : card.height}px`,
