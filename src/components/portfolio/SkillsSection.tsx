@@ -676,112 +676,30 @@ const SkillsSection: React.FC = () => {
     };
   }, []);
 
-  const handleFilterClick = (cat: FilterType) => {
-    setActiveFilter(cat);
-  };
-
   return (
-    <div className="w-full h-full min-h-[calc(100vh-4rem)] flex flex-col justify-between items-center px-3 sm:px-6 pt-2 pb-2 relative overflow-hidden bg-[#060709] text-slate-100">
+    <div className="w-full h-full min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center px-4 sm:px-6 relative overflow-hidden bg-[#000000] text-slate-100 select-none">
+      {/* Background Silver Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-white/[0.02] rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Background Silver Ambient Glows */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-slate-400/[0.03] rounded-full blur-3xl pointer-events-none" />
+      {/* Main Centered Circular Physics Arena */}
+      <div className="relative flex items-center justify-center">
+        {/* Concentric Outer Decorative Rings matching screenshot */}
+        <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-white/10 pointer-events-none" />
+        <div className="absolute -inset-6 sm:-inset-8 rounded-full border border-white/5 pointer-events-none" />
 
-      <div className="mx-auto max-w-5xl w-full flex flex-col items-center justify-between h-full relative z-10 py-1">
+        <div
+          ref={containerRef}
+          className="relative w-[500px] h-[500px] max-w-[90vw] max-h-[75vh] aspect-square rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_80px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center"
+        >
+          {/* Inner Circular Highlight Glow */}
+          <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
 
-        {/* Header Title */}
-        <div className="text-center space-y-0.5">
-          <div className="text-[11px] sm:text-xs text-slate-300 tracking-[0.25em] font-semibold uppercase flex items-center justify-center gap-1.5">
-            <Diamond size={13} className="text-white animate-pulse" />
-            <span>INTERACTIVE TECH STACK</span>
-          </div>
-
-          <div className="relative inline-block">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400 select-none drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-              Skills
-            </h2>
-          </div>
+          {/* Physics Canvas */}
+          <canvas
+            ref={canvasRef}
+            className="block w-full h-full touch-none select-none relative z-10 rounded-full"
+          />
         </div>
-
-        {/* Filter Navigation Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2 py-0.5">
-          <span className="text-slate-400 font-semibold text-xs tracking-wider uppercase mr-1 hidden sm:inline">
-            Filter:
-          </span>
-
-          {(['ALL', 'DEV', 'AUTOMATION', 'DB & CLOUD'] as const).map((cat) => {
-            const countStr = counts[cat].toString().padStart(2, '0');
-            const isActive = activeFilter === cat;
-
-            return (
-              <button
-                key={cat}
-                onClick={() => handleFilterClick(cat)}
-                className={`px-3.5 py-1 rounded-full border text-xs font-semibold tracking-wider transition-all duration-200 uppercase flex items-center gap-1.5 cursor-pointer ${isActive
-                  ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.5)] font-bold'
-                  : 'bg-white/5 border-white/15 text-slate-300 hover:border-white/40 hover:text-white hover:bg-white/10'
-                  }`}
-              >
-                <span>{cat}</span>
-                <span className={`text-[10px] ${isActive ? 'text-black font-extrabold' : 'text-slate-400'}`}>
-                  ({countStr})
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* CIRCULAR ARENA Physics Sandbox Container */}
-        <div className="relative flex items-center justify-center my-auto">
-          {/* Concentric Decorative Rings matching design */}
-          <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-white/10 pointer-events-none" />
-          <div className="absolute -inset-6 sm:-inset-8 rounded-full border border-white/5 pointer-events-none" />
-
-          <div
-            ref={containerRef}
-            className="relative w-[450px] h-[450px] max-w-[88vw] max-h-[56vh] aspect-square rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center"
-          >
-            {/* Inner Circular Highlight Glow */}
-            <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
-
-            {/* Physics Canvas */}
-            <canvas
-              ref={canvasRef}
-              className="block w-full h-full touch-none select-none relative z-10 rounded-full"
-            />
-          </div>
-        </div>
-
-        {/* Selected Skill / Hover Detail Popover Card */}
-        <div className="w-full flex items-center justify-center min-h-[36px]">
-          {(selectedSkill || hoveredSkill) && (
-            <div className="w-full max-w-xl bg-gradient-to-r from-[#0e1117]/95 via-[#0a0c10]/95 to-[#0e1117]/95 border border-white/20 rounded-xl px-4 py-2 shadow-2xl backdrop-blur-xl animate-in fade-in duration-150 flex items-center justify-between gap-3">
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border bg-white/10 border-white/25 text-white">
-                    {(selectedSkill || hoveredSkill)?.category}
-                  </span>
-                  <span className="text-xs font-bold text-white">
-                    {(selectedSkill || hoveredSkill)?.name}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-300 mt-0.5 line-clamp-1">
-                  {(selectedSkill || hoveredSkill)?.desc}
-                </p>
-              </div>
-
-              {selectedSkill && (
-                <button
-                  onClick={() => setSelectedSkill(null)}
-                  className="text-[10px] text-slate-300 hover:text-white px-2.5 py-0.5 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all cursor-pointer"
-                >
-                  Close
-                </button>
-              )}
-            </div>
-          )}
-        </div>
-
       </div>
     </div>
   );
