@@ -229,7 +229,7 @@ const SkillsSection: React.FC = () => {
     if (!canvas || !container) return;
 
     const rect = container.getBoundingClientRect();
-    const size = Math.round(Math.min(rect.width, rect.height)) || 450;
+    const size = Math.round(Math.min(rect.width, rect.height)) || 530;
     const dpr = window.devicePixelRatio || 1;
 
     canvas.width = size * dpr;
@@ -735,7 +735,7 @@ const SkillsSection: React.FC = () => {
         {/* CIRCULAR ARENA Physics Sandbox Container */}
         <div
           ref={containerRef}
-          className="relative w-[min(450px,85vw,52vh)] h-[min(450px,85vw,52vh)] aspect-square shrink-0 rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center my-auto"
+          className="relative w-[min(530px,88vw,60vh)] h-[min(530px,88vw,60vh)] aspect-square shrink-0 rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center my-auto"
         >
           {/* Inner Circular Highlight Glow */}
           <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
