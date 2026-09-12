@@ -614,12 +614,20 @@ const SkillsSection: React.FC = () => {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Capsule Label Typography
+        // Capsule Label Typography - Auto-flip text when capsule rotates past 90deg so it is NEVER upside-down
+        const normAngle = ((angle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+        const isUpsideDown = normAngle > Math.PI / 2 && normAngle < (3 * Math.PI) / 2;
+
+        ctx.save();
+        if (isUpsideDown) {
+          ctx.rotate(Math.PI);
+        }
         ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillStyle = isHovered || isSelected || (isMatchingFilter && currentFilter !== 'ALL') ? '#ffffff' : item.textColor;
         ctx.fillText(item.name, 0, 0.5);
+        ctx.restore();
 
         ctx.restore();
       });
@@ -724,18 +732,24 @@ const SkillsSection: React.FC = () => {
         </div>
 
         {/* CIRCULAR ARENA Physics Sandbox Container */}
-        <div
-          ref={containerRef}
-          className="relative w-[450px] h-[450px] max-w-[88vw] max-h-[58vh] aspect-square rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center my-auto"
-        >
-          {/* Inner Circular Highlight Glow */}
-          <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
+        <div className="relative flex items-center justify-center my-auto">
+          {/* Concentric Decorative Rings matching design */}
+          <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-white/10 pointer-events-none" />
+          <div className="absolute -inset-6 sm:-inset-8 rounded-full border border-white/5 pointer-events-none" />
 
-          {/* Physics Canvas */}
-          <canvas
-            ref={canvasRef}
-            className="block w-full h-full touch-none select-none relative z-10 rounded-full"
-          />
+          <div
+            ref={containerRef}
+            className="relative w-[450px] h-[450px] max-w-[88vw] max-h-[56vh] aspect-square rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center"
+          >
+            {/* Inner Circular Highlight Glow */}
+            <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
+
+            {/* Physics Canvas */}
+            <canvas
+              ref={canvasRef}
+              className="block w-full h-full touch-none select-none relative z-10 rounded-full"
+            />
+          </div>
         </div>
 
         {/* Selected Skill / Hover Detail Popover Card */}
