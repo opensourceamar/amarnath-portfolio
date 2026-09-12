@@ -731,25 +731,19 @@ const SkillsSection: React.FC = () => {
           })}
         </div>
 
-        {/* CIRCULAR ARENA Physics Sandbox Container matching image */}
-        <div className="relative flex items-center justify-center my-auto">
-          {/* Concentric Decorative Rings */}
-          <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-white/10 pointer-events-none" />
-          <div className="absolute -inset-6 sm:-inset-8 rounded-full border border-white/5 pointer-events-none" />
+        {/* CIRCULAR ARENA Physics Sandbox Container */}
+        <div
+          ref={containerRef}
+          className="relative w-[450px] h-[450px] max-w-[88vw] max-h-[58vh] aspect-square rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_60px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center my-auto"
+        >
+          {/* Inner Circular Highlight Glow */}
+          <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
 
-          <div
-            ref={containerRef}
-            className="relative w-[480px] h-[480px] max-w-[88vw] max-h-[60vh] aspect-square rounded-full border border-white/20 bg-gradient-to-b from-[#0e1117]/95 via-[#0a0c10]/95 to-[#07080b]/95 shadow-[0_0_80px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.06)] overflow-hidden backdrop-blur-xl flex items-center justify-center"
-          >
-            {/* Inner Circular Highlight Glow */}
-            <div className="absolute inset-0 rounded-full pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.6)_100%)] z-20" />
-
-            {/* Physics Canvas */}
-            <canvas
-              ref={canvasRef}
-              className="block w-full h-full touch-none select-none relative z-10 rounded-full"
-            />
-          </div>
+          {/* Physics Canvas */}
+          <canvas
+            ref={canvasRef}
+            className="block w-full h-full touch-none select-none relative z-10 rounded-full"
+          />
         </div>
 
         {/* Selected Skill / Hover Detail Popover Card */}
