@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://amarnathankem.vercel.app/sitemap.xml
+Sitemap: https://amarnath.is-a.dev/sitemap.xml
