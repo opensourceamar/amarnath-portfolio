@@ -44,71 +44,62 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
 
-    <!-- Structured Data (JSON-LD) for Google Knowledge Graph & Rich Results -->
+    <!-- Dedicated WebSite Schema for Google Site Names Algorithm -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://amarnath.is-a.dev/#person",
-          "name": "Ankem Amarnath",
-          "givenName": "Amarnath",
-          "familyName": "Ankem",
-          "alternateName": [
-            "Amarnath Ankem",
-            "Amarnath",
-            "Ankem Amarnath Portfolio",
-            "opensourceamar"
-          ],
-          "jobTitle": "Software Developer & IT Engineer",
-          "description": "Software Developer specializing in Python, FastAPI, React, MySQL, and modern interactive web applications.",
-          "url": "https://amarnath.is-a.dev/",
-          "image": "https://amarnath.is-a.dev/amarnath_portrait.jpg",
-          "sameAs": [
-            "https://github.com/opensourceamar",
-            "https://www.linkedin.com/in/ankem-amarnath"
-          ],
-          "knowsAbout": [
-            "Python",
-            "FastAPI",
-            "React",
-            "TypeScript",
-            "JavaScript",
-            "Tailwind CSS",
-            "MySQL",
-            "Software Development",
-            "Software Engineering"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://amarnath.is-a.dev/#website",
-          "url": "https://amarnath.is-a.dev/",
-          "name": "Ankem Amarnath | Portfolio",
-          "alternateName": [
-            "Ankem Amarnath / Portfolio",
-            "Ankem Amarnath",
-            "Ankem Amarnath Portfolio",
-            "Amarnath Ankem",
-            "Amarnath Portfolio"
-          ],
-          "description": "Interactive personal portfolio and software engineering showcase of Ankem Amarnath.",
-          "publisher": {
-            "@id": "https://amarnath.is-a.dev/#person"
-          },
-          "inLanguage": "en-US"
-        },
-        {
-          "@type": "ProfilePage",
-          "@id": "https://amarnath.is-a.dev/#profilepage",
-          "url": "https://amarnath.is-a.dev/",
-          "name": "Ankem Amarnath - Software Developer Portfolio",
-          "mainEntity": {
-            "@id": "https://amarnath.is-a.dev/#person"
-          }
-        }
-      ]
+      "@type": "WebSite",
+      "name": "Ankem Amarnath",
+      "alternateName": [
+        "Ankem Amarnath | Portfolio",
+        "Ankem Amarnath / Portfolio",
+        "Ankem Amarnath Portfolio",
+        "amarnath.is-a.dev"
+      ],
+      "url": "https://amarnath.is-a.dev/"
+    }
+    </script>
+
+    <!-- Person & ProfilePage Schema for Google Knowledge Graph -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "@id": "https://amarnath.is-a.dev/#profilepage",
+      "url": "https://amarnath.is-a.dev/",
+      "name": "Ankem Amarnath - Software Developer Portfolio",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://amarnath.is-a.dev/#person",
+        "name": "Ankem Amarnath",
+        "givenName": "Amarnath",
+        "familyName": "Ankem",
+        "alternateName": [
+          "Amarnath Ankem",
+          "Amarnath",
+          "Ankem Amarnath Portfolio",
+          "opensourceamar"
+        ],
+        "jobTitle": "Software Developer & IT Engineer",
+        "description": "Software Developer specializing in Python, FastAPI, React, MySQL, and modern interactive web applications.",
+        "url": "https://amarnath.is-a.dev/",
+        "image": "https://amarnath.is-a.dev/amarnath_portrait.jpg",
+        "sameAs": [
+          "https://github.com/opensourceamar",
+          "https://www.linkedin.com/in/ankem-amarnath"
+        ],
+        "knowsAbout": [
+          "Python",
+          "FastAPI",
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "Tailwind CSS",
+          "MySQL",
+          "Software Development",
+          "Software Engineering"
+        ]
+      }
     }
     </script>
   </head>

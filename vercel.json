@@ -1,0 +1,27 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "amarnathankem.vercel.app"
+        }
+      ],
+      "destination": "https://amarnath.is-a.dev/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "amarnath-portfolio-two.vercel.app"
+        }
+      ],
+      "destination": "https://amarnath.is-a.dev/:path*",
+      "permanent": true
+    }
+  ]
+}
